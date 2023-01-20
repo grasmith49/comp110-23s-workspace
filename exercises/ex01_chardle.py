@@ -33,8 +33,10 @@ if word[3] == character:
 if word[4] == character:
     print(character + " found at index 4.")
     x = x + 1
-if x > 0:
-    print(str(x) + " instances of " + character + " in " + word)
-else:
+if x > 1:
+    print(str(x) + " instances of " + character + " found in " + word)
+if x == 1:
+    print("1 instance of " + character + " found in " + word)
+if x == 0:
     print(character + " not found.")
-    print("No instances of " + character + " in " + word)
+    print("No instances of " + character + " found in " + word)
