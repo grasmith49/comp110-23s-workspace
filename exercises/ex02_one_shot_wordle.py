@@ -1,93 +1,48 @@
-"""One Shot Wordle Exercise"""
+"""One Shot Wordle Exercise."""
 
 __author__ = "730546449"
 
-secret_word: str = "python"
+SECRET_WORD: str = "python"
+WHITE_BOX: str = "\U00002B1C"
+GREEN_BOX: str = "\U0001F7E9"
+YELLOW_BOX: str = "\U0001f7E8"
+
 x: int = 0
 boxes: str = ""
-white_box: str = "\U00002B1C"
-green_box: str = "\U0001F7E9"
-yellow_box: str = "\U0001f7E8"
-word: str = input(f"What is your {str(len(secret_word))}-letter guess? ")
-if len(word) == len(secret_word):
-    if word == secret_word: 
-        letter: bool = False
-        alt_idx: int = 0
-        while x < len(secret_word):
-            if word[x] == secret_word[x]:
-                boxes = boxes + green_box
-            else:    
-                while alt_idx < len(secret_word) and letter == False:
-                    if word[x] == secret_word[alt_idx]:
-                        letter = True
-                    else:
-                        alt_idx = alt_idx + 1
-                if letter == True:
-                    boxes = boxes + yellow_box
-                else: 
-                    boxes = boxes + white_box
+letter: bool = False 
+alt_idx: int = 0
+
+word: str = input(f"What is your {str(len(SECRET_WORD))}-letter guess? ")
+
+while len(word) != len(SECRET_WORD):
+    word = str(input(f"That was not {str(len(SECRET_WORD))} letters! Try again: "))
+
+if len(word) == len(SECRET_WORD):
+    if word == SECRET_WORD: 
+        while x < len(SECRET_WORD):
+            if word[x] == SECRET_WORD[x]:
+                boxes = boxes + GREEN_BOX
             x = x + 1
         print(boxes)
-        exit()
+        print("You got it!")
     else:
-        letter: bool = False 
-        alt_idx: int = 0
-        while x < len(secret_word):
-            if word[x] == secret_word[x]:
-                boxes = boxes + green_box
+        alt_idx = 0
+        while x < len(SECRET_WORD):
+            if word[x] == SECRET_WORD[x]:
+                boxes = boxes + GREEN_BOX
             else:    
-                while alt_idx < len(secret_word) and letter == False:
-                    if word[x] == secret_word[alt_idx]:
+                while alt_idx < len(SECRET_WORD) and letter is False:
+                    if word[x] == SECRET_WORD[alt_idx]:
                         letter = True
                     else:
                         alt_idx = alt_idx + 1
-                if letter == True:
-                    boxes = boxes + yellow_box
+                if letter is True:
+                    boxes = boxes + YELLOW_BOX
+                    letter = False
+                    alt_idx = 0
                 else: 
-                    boxes = boxes + white_box
+                    boxes = boxes + WHITE_BOX
+                    alt_idx = 0
             x = x + 1
         print(boxes)
         print("Not quite. Play again soon!")
-        exit()
-while len(word) != len(secret_word):
-    word: str = input(f"That was not {str(len(secret_word))} letters! Try again: ")
-if len(word) == len(secret_word):
-    if word == secret_word:
-        letter: bool = False 
-        alt_idx: int = 0
-        while x < len(secret_word):
-            if word[x] == secret_word[x]:
-                boxes = boxes + green_box
-            else:    
-                while alt_idx < len(secret_word) and letter == False:
-                    if word[x] == secret_word[alt_idx]:
-                        letter = True
-                    else:
-                        alt_idx = alt_idx + 1
-                if letter == True:
-                    boxes = boxes + yellow_box
-                else: 
-                    boxes = boxes + white_box
-            x = x + 1
-        print(boxes)
-        exit()
-    else:
-        letter: bool = False 
-        alt_idx: int = 0
-        while x < len(secret_word):
-            if word[x] == secret_word[x]:
-                boxes = boxes + green_box
-            else:    
-                while alt_idx < len(secret_word) and letter == False:
-                    if word[x] == secret_word[alt_idx]:
-                        letter = True
-                    else:
-                        alt_idx = alt_idx + 1
-                if letter == True:
-                    boxes = boxes + yellow_box
-                else: 
-                    boxes = boxes + white_box
-            x = x + 1
-        print(boxes)
-        print("Not quite. Play again soon!")
-        exit()
